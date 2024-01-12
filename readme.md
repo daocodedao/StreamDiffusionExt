@@ -1,6 +1,7 @@
 
 # 说明
 源项目  https://github.com/cumulo-autumn/StreamDiffusion
+Jan 8, 2024 commit id: 8ff959a3ae6536f33d6f0fbf809e9b620e346978
 
 
 # 安装
