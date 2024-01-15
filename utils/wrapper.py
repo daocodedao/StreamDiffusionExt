@@ -419,7 +419,7 @@ class StreamDiffusionWrapper:
         try:  # Load from local directory
             print(f"StableDiffusionPipeline.from_pretrained:{model_id_or_path}")
 
-            if os.path.exists(model_id_or_path):
+            if isinstance(model_id_or_path, str)  and os.path.exists(model_id_or_path):
                 pipe: StableDiffusionPipeline = StableDiffusionPipeline.from_single_file(
                     model_id_or_path,
                 ).to(device=self.device, dtype=self.dtype)
@@ -427,8 +427,6 @@ class StreamDiffusionWrapper:
                 pipe: StableDiffusionPipeline = StableDiffusionPipeline.from_pretrained(
                     model_id_or_path,
                 ).to(device=self.device, dtype=self.dtype)
-
-
 
         except ValueError:  # Load from huggingface
             print(f"StableDiffusionPipeline.from_single_file:{model_id_or_path}")

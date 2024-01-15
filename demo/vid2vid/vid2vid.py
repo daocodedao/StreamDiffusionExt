@@ -69,10 +69,7 @@ def main(
     device_ids = [0]
     if torch.cuda.device_count() > 1:
       print("使用第二个GPU", torch.cuda.device_count(), "GPUs!")
-      device_ids = [1]
-    
-
-    model_id: str = "KBlueLeaf/kohaku-v2.1",
+      device_ids = [0,1]
 
     stream = StreamDiffusionWrapper(
         model_id_or_path=model_id,
@@ -121,5 +118,6 @@ demo = gr.Interface(
     gr.Video(sources=['upload', 'webcam']), 
     "playable_video"
 )
+
 demo.launch(share=False, server_port=9092)
 
