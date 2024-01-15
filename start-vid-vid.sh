@@ -6,6 +6,7 @@ echo "${YELLOW}source venv_steam_diff/bin/activate${NOCOLOR}"
 source venv_steam_diff/bin/activate
 
 workdir=demo/vid2vid
+echo "${YELLOW}cd $workdir${NOCOLOR}"
 cd $workdir
 
 
