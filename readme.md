@@ -58,6 +58,14 @@ cd /data/work/generative-models
 cd /data/work/generative-models
 ./start-vid-vid.sh  
 ```
+## vid2vid example
+```
+cd examples
+python vid2vid/main.py --input resource/input/奢奢夫人.mp4 --output path/to/奢奢夫人_out.mp4
+
+```
+
+
 
 # 常见问题
 
