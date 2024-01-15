@@ -43,21 +43,21 @@ nvm install node
 
 ```
 # 启动 txt2img 端口：9090
+cd /data/work/generative-models
 ./start-txt-img.sh
-
 ```
 ## 图片图片
 ```
 # 启动 txt2img 端口：9091
+cd /data/work/generative-models
 ./start-img-img.sh
-
 ```
 
 ## vid2vid
 ```
 # 启动 vid2vid 端口：9092
-./start-vid-vid.sh
-
+cd /data/work/generative-models
+./start-vid-vid.sh  
 ```
 
 # 常见问题
