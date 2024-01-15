@@ -61,7 +61,7 @@ cd /data/work/generative-models
 ## vid2vid example
 ```
 cd examples
-python vid2vid/main.py --input resource/input/奢奢夫人.mp4 --output path/to/奢奢夫人_out.mp4
+python vid2vid/main.py --input resource/input/奢奢夫人.mp4 --output resource/output/奢奢夫人_out.mp4
 
 ```
 
