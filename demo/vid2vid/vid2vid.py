@@ -119,5 +119,5 @@ demo = gr.Interface(
     "playable_video"
 )
 
-demo.launch(share=False, server_port=9092)
+demo.launch(share=False, server_port=9092, ssl_verify=False)
 

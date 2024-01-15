@@ -27,7 +27,6 @@ pip3 install torch==2.1.0 torchvision==0.16.0 xformers --index-url https://downl
 ```
 
 # 安装 npm
-
 ```
 sudo apt update
 sudo apt install -y nodejs
@@ -37,9 +36,6 @@ https://weekendprojects.dev/posts/fixed-npm-install-error-missing-required-argum
 curl https://raw.githubusercontent.com/creationix/nvm/master/install.sh | bash
 source ~/.profile
 nvm install node 
-
-
-
 ```
 # 项目启动
 ## 文字图片
