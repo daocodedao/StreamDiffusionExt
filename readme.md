@@ -1,5 +1,8 @@
 
 # 说明
+https://github.com/daocodedao/StreamDiffusionExt.git
+
+
 源项目  https://github.com/cumulo-autumn/StreamDiffusion
 Jan 8, 2024 commit id: 8ff959a3ae6536f33d6f0fbf809e9b620e346978
 
@@ -42,20 +45,20 @@ nvm install node
 ## 文字图片
 
 ```
-# 启动 txt2img 端口：9090
+# 启动 txt2img 端口： 9090
 cd /data/work/generative-models
 ./start-txt-img.sh
 ```
 ## 图片图片
 ```
-# 启动 txt2img 端口：9091
+# 启动 txt2img 端口： 9091
 cd /data/work/generative-models
 ./start-img-img.sh
 ```
 
 ## vid2vid
 ```
-# 启动 vid2vid 端口：9092
+# 启动 vid2vid 端口： 9092
 cd /data/work/generative-models
 ./start-vid-vid.sh  
 ```
@@ -64,8 +67,6 @@ cd /data/work/generative-models
 
 ```
 ValueError: When localhost is not accessible, a shareable link must be created. Please set share=True or check your proxy settings to allow access to localhost.
-
-
 
 export no_proxy="localhost, 127.0.0.1, ::1"
 
