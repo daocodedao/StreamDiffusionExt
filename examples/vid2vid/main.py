@@ -10,6 +10,7 @@ from tqdm import tqdm
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from utils.wrapper import StreamDiffusionWrapper
+from utils.util import Util
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -63,6 +64,14 @@ def main(
     height = int(video.shape[1] * scale)
     width = int(video.shape[2] * scale)
 
+    device = "cuda"
+    # device_ids = ["cuda"]
+    if Util.isMac():
+        device = "mps"
+
+    vae_id = "./models/Model/taesd/"
+    use_tiny_vae = True
+
     stream = StreamDiffusionWrapper(
         model_id_or_path=model_id,
         lora_dict=lora_dict,
@@ -79,6 +88,13 @@ def main(
         similar_image_filter_threshold=0.98,
         use_denoising_batch=use_denoising_batch,
         seed=seed,
+        use_lcm_lora = True,
+        lcm_lora_id = "./models/LoRA/pytorch_lora_weights.safetensors",
+        # device_ids = device_ids,
+        device = device,
+        use_tiny_vae = use_tiny_vae,
+        vae_id = vae_id
+
     )
 
     stream.prepare(

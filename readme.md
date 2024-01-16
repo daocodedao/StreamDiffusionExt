@@ -58,11 +58,26 @@ cd /data/work/generative-models
 cd /data/work/generative-models
 ./start-vid-vid.sh  
 ```
-## vid2vid example
-```
-cd examples
-python vid2vid/main.py --input resource/input/奢奢夫人.mp4 --output resource/output/奢奢夫人_out.mp4
 
+## example
+## vid2vid
+```
+cd /data/work/generative-models
+source venv_steam_diff/bin/activate 
+python examples/vid2vid/main.py --input resource/input/奢奢夫人.mp4 --output resource/output/奢奢夫人_out.mp4 --prompt "1girl with brown dog ears, thick frame glasses"
+
+# 任务完成后拷贝回来
+scp -r  -P 10067 fxbox@frp.fxait.com:/data/work/StreamDiffusion/resource/output/  /Users/linzhiji/Downloads/
+```
+
+## txt2img
+```
+cd /data/work/generative-models
+source venv_steam_diff/bin/activate 
+python examples/txt2img/single.py --output resource/output/out.png --prompt "1girl with brown dog ears, thick frame glasses"
+
+# 任务完成后拷贝回来
+scp -r  -P 10067 fxbox@frp.fxait.com:/data/work/StreamDiffusion/resource/output/  /Users/linzhiji/Downloads/
 ```
 
 
@@ -75,3 +90,5 @@ ValueError: When localhost is not accessible, a shareable link must be created. 
 export no_proxy="localhost, 127.0.0.1, ::1"
 
 ```
+
+

@@ -7,6 +7,7 @@ import fire
 sys.path.append(os.path.join(os.path.dirname(__file__), "..", ".."))
 
 from utils.wrapper import StreamDiffusionWrapper
+from utils.util import Util
 
 CURRENT_DIR = os.path.dirname(os.path.abspath(__file__))
 
@@ -52,6 +53,12 @@ def main(
 
     os.makedirs(output, exist_ok=True)
 
+    device = "cuda"
+    # device_ids = ["cuda"]
+    if Util.isMac():
+        device = "mps"
+        # device_ids = ["mps"]
+
     stream = StreamDiffusionWrapper(
         model_id_or_path=model_id_or_path,
         lora_dict=lora_dict,
@@ -65,6 +72,10 @@ def main(
         use_denoising_batch=False,
         cfg_type="none",
         seed=seed,
+        use_lcm_lora = True,
+        lcm_lora_id = "./models/LoRA/pytorch_lora_weights.safetensors",
+        # device_ids = device_ids,
+        device = device
     )
 
     stream.prepare(

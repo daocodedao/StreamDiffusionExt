@@ -1,0 +1,6 @@
+omegaconf
+av
+matplotlib
+pillow
+mss
+accelerate

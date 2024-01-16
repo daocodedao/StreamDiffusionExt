@@ -3,18 +3,18 @@ import os
 from pathlib import Path
 import traceback
 from typing import List, Literal, Optional, Union, Dict
-
+from utils.util import Util
 import numpy as np
 import torch
 from diffusers import AutoencoderTiny, StableDiffusionPipeline
 from PIL import Image
-
+from utils.logger_settings import api_logger
 from streamdiffusion import StreamDiffusion
 from streamdiffusion.image_utils import postprocess_image
 
-import os
-os.environ['HTTP_PROXY'] = '192.168.0.77:18808'
-os.environ['HTTPS_PROXY'] = '192.168.0.77:18808'
+# import os
+# os.environ['HTTP_PROXY'] = '192.168.0.77:18808'
+# os.environ['HTTPS_PROXY'] = '192.168.0.77:18808'
 
 torch.set_grad_enabled(False)
 torch.backends.cuda.matmul.allow_tf32 = True
@@ -417,13 +417,23 @@ class StreamDiffusionWrapper:
         """
         
         try:  # Load from local directory
-            print(f"StableDiffusionPipeline.from_pretrained:{model_id_or_path}")
 
-            if isinstance(model_id_or_path, str)  and os.path.exists(model_id_or_path):
+            if isinstance(model_id_or_path, str) and os.path.exists(model_id_or_path):
+                print(f"StableDiffusionPipeline.from_single_file:{model_id_or_path}")
+                if not os.path.exists(model_id_or_path):
+                    api_logger.info(f"模型:{model_id_or_path}不存在")
+                
+                # config_files
+                original_config_file = "./models/v1-inference.yaml"
                 pipe: StableDiffusionPipeline = StableDiffusionPipeline.from_single_file(
                     model_id_or_path,
+                    use_safetensors=True,
+                    local_files_only=True,
+                    original_config_file = original_config_file,
+                    load_safety_checker = False
                 ).to(device=self.device, dtype=self.dtype)
             else:
+                print(f"StableDiffusionPipeline.from_pretrained:{model_id_or_path}")
                 pipe: StableDiffusionPipeline = StableDiffusionPipeline.from_pretrained(
                     model_id_or_path,
                 ).to(device=self.device, dtype=self.dtype)
@@ -479,7 +489,8 @@ class StreamDiffusionWrapper:
 
         try:
             if acceleration == "xformers":
-                stream.pipe.enable_xformers_memory_efficient_attention()
+                if not Util.isMac():
+                    stream.pipe.enable_xformers_memory_efficient_attention()
             if acceleration == "tensorrt":
                 from polygraphy import cuda
                 from streamdiffusion.acceleration.tensorrt import (
