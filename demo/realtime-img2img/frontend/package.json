@@ -12,9 +12,7 @@
     "format": "prettier --write ."
   },
   "devDependencies": {
-    "@sveltejs/adapter-auto": "^2.1.1",
-    "@sveltejs/adapter-static": "^2.0.3",
-    "@sveltejs/kit": "^1.27.3",
+    "@sveltejs/adapter-node": "^1.2.4",
     "@typescript-eslint/eslint-plugin": "^6.0.0",
     "@typescript-eslint/parser": "^6.0.0",
     "autoprefixer": "^10.4.16",
@@ -35,8 +33,14 @@
   },
   "type": "module",
   "dependencies": {
+    "@sveltejs/adapter-auto": "^2.1.1",
+    "@sveltejs/adapter-static": "^2.0.3",
+    "@sveltejs/kit": "^1.27.3",
     "buffer": "^6.0.3",
     "piexifjs": "^1.0.6",
     "rvfc-polyfill": "^1.0.7"
+  },
+  "engines": {
+    "node": ">=18.13.0"
   }
 }
