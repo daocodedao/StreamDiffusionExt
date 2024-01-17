@@ -66,8 +66,7 @@ cd /data/work/generative-models
 source venv_steam_diff/bin/activate 
 python examples/vid2vid/main.py --input resource/input/奢奢夫人.mp4 --output resource/output/奢奢夫人_out.mp4 --prompt "1girl with brown dog ears, thick frame glasses"
 
-# 任务完成后拷贝回来
-scp -r  -P 10067 fxbox@frp.fxait.com:/data/work/StreamDiffusion/resource/output/  /Users/linzhiji/Downloads/
+
 ```
 
 ## txt2img
@@ -76,8 +75,7 @@ cd /data/work/generative-models
 source venv_steam_diff/bin/activate 
 python examples/txt2img/single.py --output resource/output/out.png --prompt "1girl with brown dog ears, thick frame glasses"
 
-# 任务完成后拷贝回来
-scp -r  -P 10067 fxbox@frp.fxait.com:/data/work/StreamDiffusion/resource/output/  /Users/linzhiji/Downloads/
+
 ```
 
 
