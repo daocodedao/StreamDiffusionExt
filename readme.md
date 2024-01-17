@@ -69,7 +69,9 @@ cd /data/work/StreamDiffusion
 ```
 cd /data/work/StreamDiffusion
 source venv_steam_diff/bin/activate 
-python examples/vid2vid/main.py --input resource/input/奢奢夫人.mp4 --output resource/output/奢奢夫人_out.mp4 --prompt "1girl with brown dog ears, thick frame glasses"
+python examples/vid2vid/main.py --input resource/input/奢奢夫人.mp4 --output resource/output/ --prompt "girls with red hair" --vae_id models/Model/diffusion_pytorch_model.safetensors --model_id ./models/Model/kohaku-v2.1.safetensors
+
+
 ```
 
 ### txt2img
@@ -84,6 +86,10 @@ python examples/txt2img/single.py --output ./resource/output/outtxt.png --prompt
 参考 https://github.com/radames/Real-Time-Latent-Consistency-Model/tree/main?tab=readme-ov-file
 https://huggingface.co/collections/latent-consistency/latent-consistency-model-demos-654e90c52adb0688a0acbe6f
 ```
+cd /data/work/StreamDiffusion
+source venv_steam_diff/bin/activate 
+python examples/img2img/single.py --input ./resource/input/in.png --output ./resource/output/outimg.png --prompt "girls with red hair" --model_id_or_path ./models/Model/kohaku-v2.1.safetensors
+
 ```
 
 
