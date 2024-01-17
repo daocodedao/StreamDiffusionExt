@@ -26,6 +26,9 @@ pip3 install torch==2.1.0 torchvision==0.16.0 xformers --index-url https://downl
 
 
 pip install -r requirements.txt
+
+python setup.py develop easy_install streamdiffusion[tensorrt]
+python -m streamdiffusion.tools.install-tensorrt
 ```
 
 # 安装 npm
