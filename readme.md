@@ -60,7 +60,7 @@ cd /data/work/generative-models
 ```
 
 ## example
-## vid2vid
+### vid2vid
 ```
 cd /data/work/generative-models
 source venv_steam_diff/bin/activate 
@@ -69,7 +69,7 @@ python examples/vid2vid/main.py --input resource/input/奢奢夫人.mp4 --output
 
 ```
 
-## txt2img
+### txt2img
 ```
 cd /data/work/generative-models
 source venv_steam_diff/bin/activate 
@@ -77,7 +77,11 @@ python examples/txt2img/single.py --output resource/output/out.png --prompt "1gi
 
 
 ```
-
+### img2img
+参考 https://github.com/radames/Real-Time-Latent-Consistency-Model/tree/main?tab=readme-ov-file
+https://huggingface.co/collections/latent-consistency/latent-consistency-model-demos-654e90c52adb0688a0acbe6f
+```
+```
 
 
 # 常见问题
