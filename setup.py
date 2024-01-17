@@ -46,7 +46,7 @@ setup(
     name="streamdiffusion",
     version="0.1.1",
     description="real-time interactive image generation pipeline",
-    long_description=open("README.md", "r", encoding="utf-8").read(),
+    long_description=open("readme.md", "r", encoding="utf-8").read(),
     long_description_content_type="text/markdown",
     keywords="deep learning diffusion pytorch stable diffusion audioldm streamdiffusion real-time",
     license="Apache 2.0 License",
