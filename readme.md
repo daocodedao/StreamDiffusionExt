@@ -24,6 +24,8 @@ ls -l /usr/local | grep cuda
 # cuda11.8
 pip3 install torch==2.1.0 torchvision==0.16.0 xformers --index-url https://download.pytorch.org/whl/cu118
 
+
+pip install -r requirements.txt
 ```
 
 # 安装 npm
@@ -42,27 +44,27 @@ nvm install node
 
 ```
 # 启动 txt2img 端口： 9090
-cd /data/work/generative-models
+cd /data/work/StreamDiffusion
 ./start-txt-img.sh
 ```
 ## 图片图片
 ```
 # 启动 txt2img 端口： 9091
-cd /data/work/generative-models
+cd /data/work/StreamDiffusion
 ./start-img-img.sh
 ```
 
 ## vid2vid
 ```
 # 启动 vid2vid 端口： 9092
-cd /data/work/generative-models
+cd /data/work/StreamDiffusion
 ./start-vid-vid.sh  
 ```
 
 ## example
 ### vid2vid
 ```
-cd /data/work/generative-models
+cd /data/work/StreamDiffusion
 source venv_steam_diff/bin/activate 
 python examples/vid2vid/main.py --input resource/input/奢奢夫人.mp4 --output resource/output/奢奢夫人_out.mp4 --prompt "1girl with brown dog ears, thick frame glasses"
 
@@ -71,7 +73,7 @@ python examples/vid2vid/main.py --input resource/input/奢奢夫人.mp4 --output
 
 ### txt2img
 ```
-cd /data/work/generative-models
+cd /data/work/StreamDiffusion
 source venv_steam_diff/bin/activate 
 python examples/txt2img/single.py --output resource/output/out.png --prompt "1girl with brown dog ears, thick frame glasses"
 

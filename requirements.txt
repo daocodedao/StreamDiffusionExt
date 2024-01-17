@@ -4,3 +4,4 @@ matplotlib
 pillow
 mss
 accelerate
+fire
