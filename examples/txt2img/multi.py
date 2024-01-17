@@ -59,6 +59,8 @@ def main(
         device = "mps"
         # device_ids = ["mps"]
 
+    os.makedirs(os.path.dirname(output), exist_ok=True)
+
     stream = StreamDiffusionWrapper(
         model_id_or_path=model_id_or_path,
         lora_dict=lora_dict,
