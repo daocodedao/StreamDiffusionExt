@@ -69,7 +69,9 @@ cd /data/work/StreamDiffusion
 ```
 cd /data/work/StreamDiffusion
 source venv_steam_diff/bin/activate 
-python examples/vid2vid/main.py --input resource/input/奢奢夫人.mp4 --output resource/output/ --prompt "girls with red hair" --vae_id models/Model/diffusion_pytorch_model.safetensors --model_id ./models/Model/kohaku-v2.1.safetensors
+python examples/vid2vid/main.py --input resource/input/奢奢夫人.mp4 --output resource/output/outvid.mp4 --prompt "girls with red hair" --model_id ./models/Model/kohaku-v2.1.safetensors 
+
+python examples/vid2vid/main.py --input resource/input/2088_1705490330.mp4 --output resource/output/2088_1705490330_out.mp4 --prompt "girls with red hair" --model_id ./models/Model/kohaku-v2.1.safetensors 
 
 
 ```
@@ -79,6 +81,9 @@ python examples/vid2vid/main.py --input resource/input/奢奢夫人.mp4 --output
 cd /data/work/StreamDiffusion
 source venv_steam_diff/bin/activate 
 python examples/txt2img/single.py --output ./resource/output/outtxt.png --prompt "1girl with brown dog ears, thick frame glasses" --model_id_or_path ./models/Model/kohaku-v2.1.safetensors
+
+# turbo
+python examples/txt2img/single.py --output ./resource/output/outtxt.png --prompt "1girl with brown dog ears, thick frame glasses" --model_id_or_path ./models/sd_turbo/sd_turbo.safetensors
 ```
 
 

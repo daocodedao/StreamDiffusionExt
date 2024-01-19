@@ -6,3 +6,4 @@ mss
 accelerate
 fire
 diffusers==0.24.0
+gradio
