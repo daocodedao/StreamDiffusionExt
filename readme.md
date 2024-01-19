@@ -95,6 +95,8 @@ cd /data/work/StreamDiffusion
 source venv_steam_diff/bin/activate 
 python examples/img2img/single.py --input ./resource/input/in.png --output ./resource/output/outimg.png --prompt "girls with red hair" --model_id_or_path ./models/Model/kohaku-v2.1.safetensors
 
+
+./start-gradio-img-img.sh
 ```
 
 

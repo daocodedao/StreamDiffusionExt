@@ -140,9 +140,9 @@ def main():
 
         with gr.Row():
             gen_button = gr.Button("生成图片")
-        with gr.Row():
-            with gr.Accordion("demo"):
-                gr.Markdown("<div align='center'>  </div>")
+        # with gr.Row():
+        #     with gr.Accordion("demo"):
+        #         gr.Markdown("<div align='center'>  </div>")
 
         gen_button.click(generate_file, inputs=[image_input, prompt_text], outputs=image_output)
 
