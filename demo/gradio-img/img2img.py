@@ -74,6 +74,7 @@ def generateImage(
             device = device
         )
 
+    print(f"CONTENT_STREAM.prepare")
     CONTENT_STREAM.prepare(
         prompt=prompt,
         negative_prompt=negative_prompt,
@@ -82,11 +83,13 @@ def generateImage(
         delta=delta,
     )
 
+    print(f"CONTENT_STREAM.preprocess_image(input)")
     image_tensor = CONTENT_STREAM.preprocess_image(input)
 
     for _ in range(CONTENT_STREAM.batch_size - 1):
         CONTENT_STREAM(image=image_tensor)
 
+    print(f"CONTENT_STREAM(image=image_tensor)")
     output_image = CONTENT_STREAM(image=image_tensor)
     # output_image.save(output)
     
