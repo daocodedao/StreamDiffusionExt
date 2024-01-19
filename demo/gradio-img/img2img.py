@@ -96,7 +96,7 @@ def generateImage(
     return output_image
 
 
-def generate_file(file_obj):
+def generate_file(file_obj, prompt_text):
 
     # return file_obj.rotate(45)
 
@@ -113,7 +113,7 @@ def generate_file(file_obj):
     os.makedirs(tmpdir, exist_ok=True)
 
     try:
-        generateImage(input = file_obj, output=outFilePath)
+        generateImage(input = file_obj, output=outFilePath, prompt = prompt_text)
         print(f"generateImage 成功：{outFilePath}")
 
     except Exception as e:
@@ -136,12 +136,15 @@ def main():
                 image_output = gr.Image(type="filepath")
 
         with gr.Row():
+            prompt_text = gr.Textbox("1girl with brown dog hair, thick glasses, smiling")
+
+        with gr.Row():
             gen_button = gr.Button("生成图片")
         with gr.Row():
             with gr.Accordion("demo"):
                 gr.Markdown("<div align='center'>  </div>")
 
-        gen_button.click(generate_file, inputs=image_input, outputs=image_output)
+        gen_button.click(generate_file, inputs=[image_input, prompt_text], outputs=image_output)
 
         # demo.launch(share=False, server_port=6006)
         demo.launch(share=False, server_port=9091, ssl_verify=False, debug=True, show_error=True)
