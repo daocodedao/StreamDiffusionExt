@@ -26,8 +26,8 @@ from streamdiffusion.image_utils import postprocess_image
 CONTENT_STREAM=None
 
 def generateImage(
-    input,
-    # input: str = os.path.join(CURRENT_DIR, "..", "..", "images", "inputs", "input.png"),
+    # input,
+    input: str = os.path.join(CURRENT_DIR, "..", "..", "images", "inputs", "input.png"),
     output: str = os.path.join(CURRENT_DIR, "..", "..", "images", "outputs", "output.png"),
     model_id_or_path: str = "./models/Model/kohaku-v2.1.safetensors",
     lora_dict: Optional[Dict[str, float]] = None,
@@ -98,30 +98,30 @@ def generateImage(
 
 def generate_file(file_obj):
 
-    return file_obj.rotate(45)
+    # return file_obj.rotate(45)
 
-    outImage = generateImage(input = file_obj)
-    return outImage
-    # global tmpdir
-    # print('临时文件夹地址：{}'.format(tmpdir))
-    # print('上传文件的地址：{}'.format(file_obj.name))  # 输出上传后的文件在gradio中保存的绝对地址
+    # outImage = generateImage(input = file_obj)
+    # return outImage
+    global tmpdir
+    print('临时文件夹地址：{}'.format(tmpdir))
+    print('上传文件的地址：{}'.format(file_obj.name))  # 输出上传后的文件在gradio中保存的绝对地址
 
-    # dirname, filename = os.path.split(file_obj.name)
+    dirname, filename = os.path.split(file_obj.name)
 
-    # outFileName = f"out_{filename}"
-    # outFilePath = os.path.join(tmpdir, outFileName)
-    # os.makedirs(tmpdir, exist_ok=True)
+    outFileName = f"out_{filename}"
+    outFilePath = os.path.join(tmpdir, outFileName)
+    os.makedirs(tmpdir, exist_ok=True)
 
-    # try:
-    #     generateImage(input = file_obj.name, output=outFilePath)
-    #     print(f"generateImage 成功：{outFilePath}")
+    try:
+        generateImage(input = file_obj.name, output=outFilePath)
+        print(f"generateImage 成功：{outFilePath}")
 
-    # except Exception as e:
-    #     print(e)
-    #     print(f"generateImage 失败：{outFilePath}")
+    except Exception as e:
+        print(e)
+        print(f"generateImage 失败：{outFilePath}")
 
-    # # 返回新文件的的地址（注意这里）
-    # return outFilePath
+    # 返回新文件的的地址（注意这里）
+    return outFilePath
 
 def main():
     global tmpdir
@@ -132,8 +132,8 @@ def main():
                 # 定义输入和输出
                 # inputs = gr.components.File(label="上传文件", file_types=["png", "jpg", "jpeg"])
                 # outputs = gr.components.File(label="下载文件", file_types=["png", "jpg", "jpeg"])
-                image_input = gr.Image()
-                image_output = gr.Image()
+                image_input = gr.Image(type="filepath")
+                image_output = gr.Image(type="filepath")
 
         with gr.Row():
             gen_button = gr.Button("生成图片")
