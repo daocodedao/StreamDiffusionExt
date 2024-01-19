@@ -96,6 +96,7 @@ def generateImage(
 def generate_file(file_obj):
 
     outImage = generateImage(input = file_obj)
+    return outImage
     # global tmpdir
     # print('临时文件夹地址：{}'.format(tmpdir))
     # print('上传文件的地址：{}'.format(file_obj.name))  # 输出上传后的文件在gradio中保存的绝对地址
