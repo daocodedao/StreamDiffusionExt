@@ -130,8 +130,8 @@ def main():
                 # 定义输入和输出
                 # inputs = gr.components.File(label="上传文件", file_types=["png", "jpg", "jpeg"])
                 # outputs = gr.components.File(label="下载文件", file_types=["png", "jpg", "jpeg"])
-                image_input = gr.Image()
-                image_output = gr.Image()
+                inputs = gr.Image()
+                outputs = gr.Image()
 
         with gr.Row():
             gen_button = gr.Button("生成图片")
@@ -139,7 +139,7 @@ def main():
             with gr.Accordion("demo"):
                 gr.Markdown("<div align='center'>  </div>")
 
-        gen_button.click(generate_file, inputs=image_input, outputs=image_output)
+        gen_button.click(generate_file, inputs=inputs, outputs=outputs)
 
         # demo.launch(share=False, server_port=6006)
         demo.launch(share=False, server_port=9091, ssl_verify=False, debug=True, show_error=True)
