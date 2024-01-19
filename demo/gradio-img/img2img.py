@@ -91,7 +91,7 @@ def generateImage(
 
     print(f"CONTENT_STREAM(image=image_tensor)")
     output_image = CONTENT_STREAM(image=image_tensor)
-    # output_image.save(output)
+    output_image.save(output)
     
     return output_image
 
