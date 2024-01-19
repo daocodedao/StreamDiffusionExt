@@ -321,8 +321,10 @@ class StreamDiffusionWrapper:
             The preprocessed image.
         """
         if isinstance(image, str):
+            print("isinstance str")
             image = Image.open(image).convert("RGB").resize((self.width, self.height))
         if isinstance(image, Image.Image):
+            print("isinstance Image.Image")
             image = image.convert("RGB").resize((self.width, self.height))
 
         return self.stream.image_processor.preprocess(
