@@ -23,6 +23,8 @@ from diffusers.utils import load_image
 from streamdiffusion import StreamDiffusion
 from streamdiffusion.image_utils import postprocess_image
 
+CONTENT_STREAM=None
+
 def generateImage(
     input: str = os.path.join(CURRENT_DIR, "..", "..", "images", "inputs", "input.png"),
     output: str = os.path.join(CURRENT_DIR, "..", "..", "images", "outputs", "output.png"),
@@ -39,6 +41,7 @@ def generateImage(
     seed: int = 2,
     delta: float = 0.5,
 ):
+    global CONTENT_STREAM
     if guidance_scale <= 1.0:
         cfg_type = "none"
 
@@ -50,26 +53,27 @@ def generateImage(
 
     os.makedirs(os.path.dirname(output), exist_ok=True)
 
-    stream = StreamDiffusionWrapper(
-        model_id_or_path=model_id_or_path,
-        lora_dict=lora_dict,
-        t_index_list=[22, 32, 45],
-        frame_buffer_size=1,
-        width=width,
-        height=height,
-        warmup=10,
-        acceleration=acceleration,
-        mode="img2img",
-        use_denoising_batch=use_denoising_batch,
-        cfg_type=cfg_type,
-        seed=seed,
-        use_lcm_lora = True,
-        lcm_lora_id = "./models/LoRA/pytorch_lora_weights.safetensors",
-        # device_ids = device_ids,
-        device = device
-    )
+    if CONTENT_STREAM is None:
+        CONTENT_STREAM = StreamDiffusionWrapper(
+            model_id_or_path=model_id_or_path,
+            lora_dict=lora_dict,
+            t_index_list=[22, 32, 45],
+            frame_buffer_size=1,
+            width=width,
+            height=height,
+            warmup=10,
+            acceleration=acceleration,
+            mode="img2img",
+            use_denoising_batch=use_denoising_batch,
+            cfg_type=cfg_type,
+            seed=seed,
+            use_lcm_lora = True,
+            lcm_lora_id = "./models/LoRA/pytorch_lora_weights.safetensors",
+            # device_ids = device_ids,
+            device = device
+        )
 
-    stream.prepare(
+    CONTENT_STREAM.prepare(
         prompt=prompt,
         negative_prompt=negative_prompt,
         num_inference_steps=50,
@@ -77,12 +81,12 @@ def generateImage(
         delta=delta,
     )
 
-    image_tensor = stream.preprocess_image(input)
+    image_tensor = CONTENT_STREAM.preprocess_image(input)
 
-    for _ in range(stream.batch_size - 1):
-        stream(image=image_tensor)
+    for _ in range(CONTENT_STREAM.batch_size - 1):
+        CONTENT_STREAM(image=image_tensor)
 
-    output_image = stream(image=image_tensor)
+    output_image = CONTENT_STREAM(image=image_tensor)
     output_image.save(output)
     
     return output
@@ -117,15 +121,18 @@ def main():
         with gr.Row():
             with tempfile.TemporaryDirectory(dir='./tmp/') as tmpdir:
                 # 定义输入和输出
-                inputs = gr.components.File(label="上传文件", file_types=["png", "jpg", "jpeg"])
-                outputs = gr.components.File(label="下载文件", file_types=["png", "jpg", "jpeg"])
+                # inputs = gr.components.File(label="上传文件", file_types=["png", "jpg", "jpeg"])
+                # outputs = gr.components.File(label="下载文件", file_types=["png", "jpg", "jpeg"])
+                image_input = gr.Image()
+                image_output = gr.Image()
+
         with gr.Row():
             gen_button = gr.Button("生成图片")
         with gr.Row():
             with gr.Accordion("demo"):
                 gr.Markdown("<div align='center'>  </div>")
 
-        gen_button.click(generate_file, inputs=inputs, outputs=outputs)
+        gen_button.click(generate_file, inputs=image_input, outputs=image_output)
 
         # demo.launch(share=False, server_port=6006)
         demo.launch(share=False, server_port=9091, ssl_verify=False, debug=True, show_error=True)
