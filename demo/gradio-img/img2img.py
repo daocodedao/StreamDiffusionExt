@@ -104,16 +104,16 @@ def generate_file(file_obj):
     # return outImage
     global tmpdir
     print('临时文件夹地址：{}'.format(tmpdir))
-    print('上传文件的地址：{}'.format(file_obj.name))  # 输出上传后的文件在gradio中保存的绝对地址
+    print('上传文件的地址：{}'.format(file_obj))  # 输出上传后的文件在gradio中保存的绝对地址
 
-    dirname, filename = os.path.split(file_obj.name)
+    dirname, filename = os.path.split(file_obj)
 
     outFileName = f"out_{filename}"
     outFilePath = os.path.join(tmpdir, outFileName)
     os.makedirs(tmpdir, exist_ok=True)
 
     try:
-        generateImage(input = file_obj.name, output=outFilePath)
+        generateImage(input = file_obj, output=outFilePath)
         print(f"generateImage 成功：{outFilePath}")
 
     except Exception as e:
