@@ -110,7 +110,7 @@ def generate_file(file_obj):
 
 def main():
     global tmpdir
-    
+    os.makedirs('./tmp/', exist_ok=True)
     with gr.Blocks() as demo:
         with gr.Row():
             with tempfile.TemporaryDirectory(dir='./tmp/') as tmpdir:
@@ -122,7 +122,6 @@ def main():
         with gr.Row():
             with gr.Accordion("demo"):
                 gr.Markdown("<div align='center'>  </div>")
-
 
         gen_button.click(generate_file, inputs=inputs, outputs=outputs)
 
