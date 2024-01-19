@@ -98,6 +98,8 @@ def generateImage(
 
 def generate_file(file_obj):
 
+    return file_obj.rotate(45)
+
     outImage = generateImage(input = file_obj)
     return outImage
     # global tmpdir
@@ -130,8 +132,8 @@ def main():
                 # 定义输入和输出
                 # inputs = gr.components.File(label="上传文件", file_types=["png", "jpg", "jpeg"])
                 # outputs = gr.components.File(label="下载文件", file_types=["png", "jpg", "jpeg"])
-                inputs = gr.Image()
-                outputs = gr.Image()
+                image_input = gr.Image()
+                image_output = gr.Image()
 
         with gr.Row():
             gen_button = gr.Button("生成图片")
@@ -139,7 +141,7 @@ def main():
             with gr.Accordion("demo"):
                 gr.Markdown("<div align='center'>  </div>")
 
-        gen_button.click(generate_file, inputs=inputs, outputs=outputs)
+        gen_button.click(generate_file, inputs=image_input, outputs=image_output)
 
         # demo.launch(share=False, server_port=6006)
         demo.launch(share=False, server_port=9091, ssl_verify=False, debug=True, show_error=True)
