@@ -21,4 +21,6 @@ fi
 
 echo -e "${YELLOW}python3 $jobName ${NOCOLOR}"
 
+
+# python3 demo/gradio-img/img2img.py 
 nohup python3 $jobName > /dev/null 2>&1 &

@@ -101,9 +101,11 @@ def generate_file(file_obj):
 
     try:
         generateImage(input = file_obj.name, output=outFilePath)
+        print(f"generateImage 成功：{outFilePath}")
+
     except Exception as e:
         print(e)
-        print(f"generateImage 失败")
+        print(f"generateImage 失败：{outFilePath}")
 
     # 返回新文件的的地址（注意这里）
     return outFilePath
