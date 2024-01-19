@@ -26,7 +26,8 @@ from streamdiffusion.image_utils import postprocess_image
 CONTENT_STREAM=None
 
 def generateImage(
-    input: str = os.path.join(CURRENT_DIR, "..", "..", "images", "inputs", "input.png"),
+    input,
+    # input: str = os.path.join(CURRENT_DIR, "..", "..", "images", "inputs", "input.png"),
     output: str = os.path.join(CURRENT_DIR, "..", "..", "images", "outputs", "output.png"),
     model_id_or_path: str = "./models/Model/kohaku-v2.1.safetensors",
     lora_dict: Optional[Dict[str, float]] = None,
@@ -87,32 +88,34 @@ def generateImage(
         CONTENT_STREAM(image=image_tensor)
 
     output_image = CONTENT_STREAM(image=image_tensor)
-    output_image.save(output)
+    # output_image.save(output)
     
-    return output
+    return output_image
 
 
 def generate_file(file_obj):
-    global tmpdir
-    print('临时文件夹地址：{}'.format(tmpdir))
-    print('上传文件的地址：{}'.format(file_obj.name))  # 输出上传后的文件在gradio中保存的绝对地址
 
-    dirname, filename = os.path.split(file_obj.name)
+    outImage = generateImage(input = file_obj)
+    # global tmpdir
+    # print('临时文件夹地址：{}'.format(tmpdir))
+    # print('上传文件的地址：{}'.format(file_obj.name))  # 输出上传后的文件在gradio中保存的绝对地址
 
-    outFileName = f"out_{filename}"
-    outFilePath = os.path.join(tmpdir, outFileName)
-    os.makedirs(tmpdir, exist_ok=True)
+    # dirname, filename = os.path.split(file_obj.name)
 
-    try:
-        generateImage(input = file_obj.name, output=outFilePath)
-        print(f"generateImage 成功：{outFilePath}")
+    # outFileName = f"out_{filename}"
+    # outFilePath = os.path.join(tmpdir, outFileName)
+    # os.makedirs(tmpdir, exist_ok=True)
 
-    except Exception as e:
-        print(e)
-        print(f"generateImage 失败：{outFilePath}")
+    # try:
+    #     generateImage(input = file_obj.name, output=outFilePath)
+    #     print(f"generateImage 成功：{outFilePath}")
 
-    # 返回新文件的的地址（注意这里）
-    return outFilePath
+    # except Exception as e:
+    #     print(e)
+    #     print(f"generateImage 失败：{outFilePath}")
+
+    # # 返回新文件的的地址（注意这里）
+    # return outFilePath
 
 def main():
     global tmpdir
