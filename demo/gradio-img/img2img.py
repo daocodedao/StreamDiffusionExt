@@ -26,7 +26,7 @@ from streamdiffusion.image_utils import postprocess_image
 def generateImage(
     input: str = os.path.join(CURRENT_DIR, "..", "..", "images", "inputs", "input.png"),
     output: str = os.path.join(CURRENT_DIR, "..", "..", "images", "outputs", "output.png"),
-    model_id_or_path: str = "KBlueLeaf/kohaku-v2.1",
+    model_id_or_path: str = "./models/Model/kohaku-v2.1.safetensors",
     lora_dict: Optional[Dict[str, float]] = None,
     prompt: str = "1girl with brown dog hair, thick glasses, smiling",
     negative_prompt: str = "low quality, bad quality, blurry, low resolution",

@@ -12,9 +12,9 @@ from utils.logger_settings import api_logger
 from streamdiffusion import StreamDiffusion
 from streamdiffusion.image_utils import postprocess_image
 
-import os
-os.environ['HTTP_PROXY'] = '192.168.0.77:18808'
-os.environ['HTTPS_PROXY'] = '192.168.0.77:18808'
+# import os
+# os.environ['HTTP_PROXY'] = '192.168.0.77:18808'
+# os.environ['HTTPS_PROXY'] = '192.168.0.77:18808'
 
 torch.set_grad_enabled(False)
 torch.backends.cuda.matmul.allow_tf32 = True
